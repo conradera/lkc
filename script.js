@@ -32,19 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile menu toggle
     function toggleMobileMenu() {
-        const isOpen = mobileMenu.classList.contains('show');
         mobileMenu.classList.toggle('show');
         const icon = mobileMenuToggle.querySelector('i');
-        
         if (mobileMenu.classList.contains('show')) {
             icon.className = 'fas fa-times';
-            mobileMenuToggle.setAttribute('aria-expanded', 'true');
-            // Focus first menu item for accessibility
-            const firstMenuItem = mobileMenu.querySelector('button');
-            if (firstMenuItem) firstMenuItem.focus();
         } else {
             icon.className = 'fas fa-bars';
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
         }
     }
 
@@ -95,36 +88,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Validate field lengths
-        if (data.name.length < 2 || data.name.length > 100) {
-            showToast('Name must be between 2 and 100 characters.', 'error');
-            return;
-        }
-
-        if (data.company.length < 2 || data.company.length > 100) {
-            showToast('Company name must be between 2 and 100 characters.', 'error');
-            return;
-        }
-
-        if (data.message.length < 10 || data.message.length > 2000) {
-            showToast('Message must be between 10 and 2000 characters.', 'error');
-            return;
-        }
-
         // Validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             showToast('Please enter a valid email address.', 'error');
             return;
-        }
-
-        // Validate phone format if provided
-        if (data.phone && data.phone.length > 0) {
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{7,20}$/;
-            if (!phoneRegex.test(data.phone)) {
-                showToast('Please enter a valid phone number.', 'error');
-                return;
-            }
         }
 
         // Show loading state
@@ -133,27 +101,17 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
 
         // Simulate form submission (replace with actual API call)
-        try {
-            // In a real implementation, you would send the data to your server
-            // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) });
+        setTimeout(() => {
+            // Reset form
+            contactForm.reset();
             
-            setTimeout(() => {
-                // Reset form
-                contactForm.reset();
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Show success message
-                showToast('Message sent successfully! We\'ll respond within 24 hours.', 'success');
-            }, 1500);
-        } catch (error) {
-            // Handle submission error
+            // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            showToast('Sorry, there was an error sending your message. Please try again.', 'error');
-        }
+            
+            // Show success message
+            showToast('Message sent successfully! We\'ll respond within 24 hours.', 'success');
+        }, 1500);
     }
 
     // Show toast notification
@@ -306,7 +264,7 @@ function debounce(func, wait) {
     };
 }
 
-// Enhanced keyboard navigation support
+// Optimized keyboard navigation support
 document.addEventListener('keydown', function(e) {
     // ESC key closes mobile menu
     if (e.key === 'Escape') {
@@ -314,17 +272,9 @@ document.addEventListener('keydown', function(e) {
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         if (mobileMenu && mobileMenu.classList.contains('show')) {
             mobileMenu.classList.remove('show');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
             const icon = mobileMenuToggle.querySelector('i');
             if (icon) icon.className = 'fas fa-bars';
-            mobileMenuToggle.focus();
         }
-    }
-    
-    // Enter key on language toggle
-    if (e.key === 'Enter' && e.target.classList.contains('language-toggle')) {
-        e.preventDefault();
-        toggleLanguage();
     }
 });
 

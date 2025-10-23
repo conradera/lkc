@@ -86,22 +86,9 @@ This project has been converted from a React/TypeScript application to pure HTML
 
 ## Getting Started
 
-### Quick Start
 1. Open `index.html` in any modern web browser
 2. No build process or dependencies required
 3. All assets are self-contained or loaded via CDN
-
-### Development Setup
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start development server: `npm run dev`
-4. Open http://localhost:3000 in your browser
-
-### Available Scripts
-- `npm start` - Start production server
-- `npm run dev` - Start development server with live reload
-- `npm run lint` - Run linting on all files
-- `npm run validate` - Validate HTML structure
 
 ## Customization
 
@@ -144,46 +131,6 @@ The contact form is currently set up with client-side validation and a simulated
 - JavaScript is optimized with debouncing and efficient event handling
 - Images are optimized and use appropriate formats
 - CSS is minified and organized for fast loading
-
-## Deployment
-
-### Netlify
-1. Connect your repository to Netlify
-2. Deploy automatically using the included `netlify.toml` configuration
-3. Custom domain can be configured in Netlify dashboard
-
-### Vercel
-1. Connect your repository to Vercel
-2. Deploy automatically using the included `vercel.json` configuration
-3. Custom domain can be configured in Vercel dashboard
-
-### Docker
-1. Build the image: `docker build -t lkc-consulting .`
-2. Run the container: `docker run -p 80:80 lkc-consulting`
-3. Access at http://localhost
-
-### Traditional Web Hosting
-1. Upload all files to your web server
-2. Ensure `index.html` is in the root directory
-3. Configure your web server to serve `index.html` for all routes
-
-## Security Features
-
-- Content Security Policy headers
-- XSS protection
-- Clickjacking protection
-- Form validation and sanitization
-- No inline JavaScript (except for critical functionality)
-- Secure external resource loading
-
-## Performance Features
-
-- Optimized CSS and JavaScript
-- Gzip compression
-- Browser caching
-- Lazy loading for animations
-- Minimal external dependencies
-- Responsive images
 
 ## License
 
